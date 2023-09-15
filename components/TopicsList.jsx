@@ -3,29 +3,11 @@ import RemoveBtn from "./RemoveBtn";
 import { HiPencilAlt } from "react-icons/hi";
 import EmpatyState from "./EmpatyState";
 
-const getTopics = async () => {
-  try {
-    const res = await fetch(`${process.env.URL}/api/topics`, {
-      cache: "no-store",
-    });
-
-    if (!res.ok) {
-      throw new Error("Failed to fetch topics");
-    }
-
-    return res.json();
-  } catch (error) {
-    console.log("Error loading topics: ", error);
-  }
-};
-
-export default async function TopicsList() {
-  const { topics } = await getTopics();
-
-
+export default function TopicsList({ topics }) {
+ 
   return (
     <>
-      {topics.length < 1 ? (<EmpatyState />) : (
+      {topics?.length < 1 ? (<EmpatyState />) : (
         topics?.map((t) => (
           <div key={t._id}
             className="p-4 border border-slate-300 my-3 flex justify-between gap-5 items-start"
