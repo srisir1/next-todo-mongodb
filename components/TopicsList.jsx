@@ -5,7 +5,7 @@ import EmpatyState from "./EmpatyState";
 
 const getTopics = async () => {
   try {
-    const res = await fetch("http://localhost:3000/api/topics", {
+    const res = await fetch(`${process.env.URL}/api/topics`, {
       cache: "no-store",
     });
 
