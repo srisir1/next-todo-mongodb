@@ -2,13 +2,9 @@ import EditTopicForm from "@/components/EditTopicForm";
 
 const getTopicById = async (id) => {
   try {
-    const res = await fetch(`/api/topics/${id}`, {
-      cache: "no-store",
-    });
+    const res = await fetch(`${process.env.URL}/api/topics/${id}`, { cache: "no-store", });
 
-    if (!res.ok) {
-      throw new Error("Failed to fetch topic");
-    }
+    if (!res.ok) { throw new Error("Failed to fetch topic"); }
 
     return res.json();
   } catch (error) {
@@ -18,8 +14,6 @@ const getTopicById = async (id) => {
 
 export default async function EditTopic({ params }) {
   const { id } = params;
-  const { topic } = await getTopicById(id);
-  const { title, description } = topic;
-
-  return <EditTopicForm id={id} title={title} description={description} />;
+  const res = await getTopicById(id);
+  return <EditTopicForm id={id} title={res?.topic?.title} description={res?.topic?.description} />;
 }
