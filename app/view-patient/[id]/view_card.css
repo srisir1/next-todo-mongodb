@@ -1,0 +1,15 @@
+
+.card p{
+    padding: 10px 0;
+    font-weight: 800;
+    color: green;
+}
+.card p span{
+    font-weight: 300;
+    color: rgb(0, 87, 128);
+}
+
+.card div p{
+    display: grid;
+    grid-template-columns: 120px 1fr;
+}

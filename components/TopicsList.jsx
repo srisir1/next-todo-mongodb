@@ -3,28 +3,37 @@ import RemoveBtn from "./RemoveBtn";
 import { HiPencilAlt } from "react-icons/hi";
 import EmpatyState from "./EmpatyState";
 
+import './style.css'
+
 export default function TopicsList({ topics }) {
- 
+
   return (
     <>
       {topics?.length < 1 ? (<EmpatyState />) : (
-        topics?.map((t) => (
-          <div key={t._id}
-            className="p-4 border border-slate-300 my-3 flex justify-between gap-5 items-start"
-          >
-            <div>
-              <h2 className="font-bold text-2xl">{t.title}</h2>
-              <div>{t.description}</div>
-            </div>
-            <div className="flex gap-2">
-              <RemoveBtn id={t._id} />
-              <Link href={`/edit-task/${t._id}`}>
-                <HiPencilAlt size={24} />
+
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 h-auto card">
+          {topics?.map((x, i) => {
+            const createdAt = new Date(x.createdAt).toLocaleDateString();
+            const updatedAt = new Date(x.updatedAt).toLocaleDateString();
+            return (
+              <Link key={i} href={`/view-patient/${x._id}`}>
+                <div key={i} className="p-2 bg-slate-200 rounded-md">
+                  <p>Name : <span>{x.name}</span></p>
+                  <p>Added Date : <span>{createdAt}</span></p>
+                  <p>Last Update : <span>{updatedAt}</span></p>
+                  <p>Phone : <span>{x.phone}</span></p>
+                  <p>Email : <span>{x.email}</span></p>
+                  <p>Message : <span>{x.message}</span></p>
+                  <p>Description : <span>{x.description}</span></p>
+                  <p>Query : <span>{x.query}</span></p>
+                  <p>Enquired for : <span>{x.enquired_for}</span></p>
+                </div>
               </Link>
-            </div>
-          </div>
-        ))
-      )}
+            )
+          })}
+        </div >
+      )
+      }
     </>
   );
 }

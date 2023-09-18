@@ -1,0 +1,14 @@
+
+table td,table th{
+    padding: 8px 10px;
+    border: 1px solid rgb(170, 230, 170);
+} 
+.card p{
+    color: rgb(0, 68, 107);
+    padding: 5px 0;
+    font-weight: 700;
+}
+.card p span{
+    color: rgb(0, 61, 166);
+    font-weight: 300;
+}

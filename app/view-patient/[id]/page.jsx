@@ -1,4 +1,4 @@
-import EditTopicForm from "@/components/EditTopicForm";
+import ViewCard from "./ViewCard";
 
 const getTopicById = async (id) => {
   try {
@@ -13,5 +13,7 @@ const getTopicById = async (id) => {
 export default async function EditTopic({ params }) {
   const { id } = params;
   const res = await getTopicById(id);
-  return <EditTopicForm data={res?.topic} />;
+  return (
+    <ViewCard data={res?.topic} />
+  )
 }
